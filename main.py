@@ -9,5 +9,5 @@ users_count = np.shape(matrix)[0]
 print(type(users_count))
 hidden_factors = int(input())
 
-U_matrix = np.round(5 * np.random.random_sample((users_count, hidden_factors)), 2)
+U_matrix = np.matrix([])
 print(U_matrix)

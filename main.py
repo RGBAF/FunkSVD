@@ -1,16 +1,13 @@
-# This is a sample Python script.
+import numpy as np
+matrix = np.matrix([[np.nan, np.nan, 9, 1],
+                    [3, np.nan, 7, np.nan],
+                    [5, np.nan, np.nan, 10],
+                    [np.nan, 2, np.nan, np.nan]])
+print(matrix)
+print(np.shape(matrix)[0])
+users_count = np.shape(matrix)[0]
+print(type(users_count))
+hidden_factors = int(input())
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+U_matrix = np.round(5 * np.random.random_sample((users_count, hidden_factors)), 2)
+print(U_matrix)

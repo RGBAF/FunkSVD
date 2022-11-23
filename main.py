@@ -11,3 +11,6 @@ hidden_factors = int(input())
 
 U_matrix = np.matrix([])
 print(U_matrix)
+
+V_matrix = np.round(5 * np.random.random_sample((users_count, hidden_factors)), 2)
+print(V_matrix)

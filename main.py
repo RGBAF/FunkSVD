@@ -9,16 +9,10 @@ users_count = np.shape(matrix)[0]
 print(type(np.nan))
 
 def maxnum(matrix_op):
-    numbers = []
-    for i in range(np.shape(matrix_op)[0]):
-        for j in range(np.shape(matrix_op)[1]):
-            if not np.isnan(matrix_op[i, j]):
-                numbers.append(matrix_op[i, j])
-    print(numbers)
-    return max(numbers)
-
+    return max([j for i in matrix_op.tolist() for j in i if not np.isnan(j)])
 
 max_number = maxnum(matrix)
+print(max_number)
 hidden_factors = int(input())
 U_matrix = np.round(max_number * np.random.random_sample((np.shape(matrix)[0], hidden_factors)), 2)
 print(U_matrix)

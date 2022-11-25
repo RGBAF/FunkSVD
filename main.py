@@ -22,15 +22,21 @@ def maxnum(matrix_op):
 
 
 def indexnums(matrix_op):
-    return [(i, j) for i in range(len(matrix_op.tolist())) for j in range(len(matrix_op.tolist()[i])) if not np.isnan(matrix_op.tolist()[i][j])]
+    return [(i, j)
+            for i in range(len(matrix_op.tolist()))
+            for j in range(len(matrix_op.tolist()[i]))
+            if not np.isnan(matrix_op.tolist()[i][j])]
 
 
 def quad_err(x_actual, x_predicted):
     return (x_actual - x_predicted)**2
 
 
-def predict(row, column):
-    return
+def predict(row, column, U, V):
+    p = 0
+    for i in range(np.shape(U)[1]):
+        p+=U[row, i] * V[i, column]
+    return p
 
 
 print(f'Исходная матрица:\n{matrix}')
@@ -48,16 +54,11 @@ while True:
         break
     else:
         print('!!!Введены некорректные значения!!!')
-
-
-print(matrix)
-print(np.shape(matrix)[0])
+0
 
 max_number = maxnum(matrix)
 index_numbers = indexnums(matrix)
-print(index_numbers)
-print(type(np.nan))
-print(U_matrix)
+print(f"U matrix = {U_matrix}")
 print()
-print(V_matrix)
-print(quad_err(9, -0.07))
+print(f"V.T matrix = {V_matrix}")
+print(f"e = {round(predict(index_numbers[0][0],index_numbers[0][1], U_matrix, V_matrix), 2)}")

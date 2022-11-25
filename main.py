@@ -25,6 +25,14 @@ def indexnums(matrix_op):
     return [(i, j) for i in range(len(matrix_op.tolist())) for j in range(len(matrix_op.tolist()[i])) if not np.isnan(matrix_op.tolist()[i][j])]
 
 
+def quad_err(x_actual, x_predicted):
+    return (x_actual - x_predicted)**2
+
+
+def predict(row, column):
+    return
+
+
 print(f'Исходная матрица:\n{matrix}')
 
 while True:
@@ -52,3 +60,4 @@ print(type(np.nan))
 print(U_matrix)
 print()
 print(V_matrix)
+print(quad_err(9, -0.07))

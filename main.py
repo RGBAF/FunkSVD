@@ -16,15 +16,16 @@ def generate_matrix(h_f, m_n):
     V = np.round(m_n * np.random.random_sample((h_f, np.shape(matrix)[1])), 2)
     return U, V
 
+
 def maxnum(matrix_op):
     return max([j for i in matrix_op.tolist() for j in i if not np.isnan(j)])
+
 
 def indexnums(matrix_op):
     return [(i, j) for i in range(len(matrix_op.tolist())) for j in range(len(matrix_op.tolist()[i])) if not np.isnan(matrix_op.tolist()[i][j])]
 
+
 print(f'Исходная матрица:\n{matrix}')
-
-
 
 while True:
     mode = int(input('Выберите режим:0-для теста по методичке, 1-для штатной работы'))
@@ -51,4 +52,3 @@ print(type(np.nan))
 print(U_matrix)
 print()
 print(V_matrix)
-

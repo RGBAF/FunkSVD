@@ -16,14 +16,15 @@ def generate_matrix(h_f, m_n):
     V = np.round(m_n * np.random.random_sample((h_f, np.shape(matrix)[1])), 2)
     return U, V
 
-
 def maxnum(matrix_op):
     return max([j for i in matrix_op.tolist() for j in i if not np.isnan(j)])
 
+def indexnums(matrix_op):
+    return [(i, j) for i in range(len(matrix_op.tolist())) for j in range(len(matrix_op.tolist()[i])) if not np.isnan(matrix_op.tolist()[i][j])]
 
 print(f'Исходная матрица:\n{matrix}')
-hidden_factors = int(input('Введите количество скрытых факторов:'))
-max_number = maxnum(matrix)
+
+
 
 while True:
     mode = int(input('Выберите режим:0-для теста по методичке, 1-для штатной работы'))
@@ -31,7 +32,10 @@ while True:
         U_matrix, V_matrix = test_matrix()
         break
     elif mode == 1:
+        max_number = maxnum(matrix)
+        hidden_factors = int(input('Введите количество скрытых факторов:'))
         U_matrix, V_matrix = generate_matrix(hidden_factors, max_number)
+
         break
     else:
         print('!!!Введены некорректные значения!!!')
@@ -40,18 +44,9 @@ while True:
 print(matrix)
 print(np.shape(matrix)[0])
 
-
-
-def maxnum(matrix_op):
-    return max([j for i in matrix_op.tolist() for j in i if not np.isnan(j)])
-
-def indexnums(matrix_op):
-    return [(i, j) for i in range(len(matrix_op.tolist())) for j in range(len(matrix_op.tolist()[i])) if not np.isnan(matrix_op.tolist()[i][j])]
-
 max_number = maxnum(matrix)
 index_numbers = indexnums(matrix)
-hidden_factors = int(input())
-users_count = np.shape(matrix)[0]
+print(index_numbers)
 print(type(np.nan))
 print(U_matrix)
 print()

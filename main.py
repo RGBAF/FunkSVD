@@ -10,7 +10,6 @@ def test_matrix():
     V = np.matrix([[-1.8, 1, -0.2, 1], [0.5, 1.2, 0.1, 5], [1.4, 4, 0.14, 2]])
     return U, V
 
-
 def generate_matrix(h_f, m_n):
     U = np.round(m_n * np.random.random_sample((np.shape(matrix)[0], h_f)), 2)
     V = np.round(m_n * np.random.random_sample((h_f, np.shape(matrix)[1])), 2)
@@ -35,14 +34,14 @@ def quad_err(x_actual, x_predicted):
 def predict(row, column, U, V):
     p = 0
     for i in range(np.shape(U)[1]):
-        p+=U[row, i] * V[i, column]
+        p +=U[row, i] * V[i, column]
     return p
 
 
 print(f'Исходная матрица:\n{matrix}')
 
 while True:
-    mode = int(input('Выберите режим:0-для теста по методичке, 1-для штатной работы'))
+    mode = int(input('Выберите режим:\n0 - для теста по методичке;\n1 - для штатной работы;\n'))
     if mode == 0:
         U_matrix, V_matrix = test_matrix()
         break
@@ -54,11 +53,11 @@ while True:
         break
     else:
         print('!!!Введены некорректные значения!!!')
-0
+
 
 max_number = maxnum(matrix)
 index_numbers = indexnums(matrix)
-print(f"U matrix = {U_matrix}")
+print(f"U matrix:\n{U_matrix}")
 print()
-print(f"V.T matrix = {V_matrix}")
+print(f"V.T matrix:\n{V_matrix}")
 print(f"e = {round(predict(index_numbers[0][0],index_numbers[0][1], U_matrix, V_matrix), 2)}")

@@ -50,23 +50,30 @@ def Iteration(index, matrix_op, U, V):
     U_row = factor_values(U[index[0]], np.transpose(V)[index[1]], x_act, x_predict)
     V_row = factor_values(np.transpose(V)[index[1]], U[index[0]], x_act, x_predict)
     print(f'Рассчитанное значение: {np.round(x_predict, 3)}')
-    print(f'Квадратичная ошибка: {np.round(err, 3)}')
+    print(f'Квадратичная ошибка: {err}')
     print(f'Обновленные значения скрытых факторов пользователя : {np.round(U_row, 3)}')
     print(f'Обновленные значения скрытых факторов объектов : {np.round(V_row, 3)}')
     return U_row, V_row, err
 
 print(f'Исходная матрица:\n{matrix}')
 hidden_factors = int(input('Введите количество скрытых факторов:'))
+eps = float(input('Введите необходимую точность: '))
 U_matrix, V_matrix = generate_matrix(hidden_factors)
 index_numbers = indexnums(matrix)
 print(f"U matrix:\n{U_matrix}\n")
 print(f"Vt matrix:\n{V_matrix}")
-for i in range(50):
-    print(f'_______Итерация № {i}_______')
+count = 1
+while True:
+    err_list = list()
+    print(f'_______Итерация № {count}_______')
     for element in index_numbers:
         print(f"Число: {matrix[element]}")
         f_U, f_V, error = Iteration(element, matrix, U_matrix, V_matrix)
+        err_list.append(error)
         U_matrix = assemble_U(element[0], U_matrix, f_U)
         V_matrix = assemble_V(element[1], V_matrix, f_V)
+    count +=1
+    if max(err_list) <= eps:
+        break
 print(f'Исходная матрица:\n{matrix}')
 print(f'Заполненная матрица:\n{np.round(U_matrix * V_matrix, 3)}')
